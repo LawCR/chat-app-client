@@ -7,7 +7,7 @@ import '../../css/chat.css'
 export const ChatPage = () => {
   return (
     <div className="messaging">
-        <div className="inbox_msg">
+        <div className="h-screen overflow-hidden clear-both border">
             <InboxPeople />
             {
                 true 

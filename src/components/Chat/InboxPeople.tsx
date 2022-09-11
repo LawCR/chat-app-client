@@ -4,7 +4,7 @@ import { Sidebar } from './Sidebar'
 
 export const InboxPeople = () => {
 	return (
-		<div className="inbox_people">
+		<div className="bg-gray-50 float-left overflow-hidden w-[35%] border-r border-gray-300">
 			<SearchBox />
 			<Sidebar />
 		</div>

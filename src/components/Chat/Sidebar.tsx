@@ -6,7 +6,7 @@ export const Sidebar = () => {
     const chats = [1,2,3,4,5,6,7,8,9,10];
 
     return (
-        <div className="inbox_chat">
+        <div className="overflow-y-auto h-screen">
 
             {
                 chats.map(chat => (
@@ -15,7 +15,7 @@ export const Sidebar = () => {
             }
 
             {/* <!-- Espacio extra para scroll --> */}
-            <div className="extra_space"></div>
+            <div className="h-24"></div>
         </div>
     )
 }
