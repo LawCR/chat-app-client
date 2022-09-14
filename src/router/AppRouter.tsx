@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { BrowserRouter , Routes, Route } from "react-router-dom"
+import { useContext } from 'react';
+import { BrowserRouter, HashRouter , Routes, Route } from "react-router-dom"
 import { AuthRouter } from "./AuthRouter";
 import { AuthContext } from "../auth";
 import { useEffect } from 'react';
@@ -25,7 +25,7 @@ export const AppRouter = () => {
 
     return (
         <div className={dark ? 'dark' : ''}>
-            <BrowserRouter>
+            <HashRouter>
                 <Routes>
                     {/* Rutas publicas sin autorización */}
                     <Route path="/auth/*" element={
@@ -44,7 +44,7 @@ export const AppRouter = () => {
                     
                     {/* <Route path='/*' element={<ChatPage />} /> */}
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     )
 }
