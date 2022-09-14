@@ -9,10 +9,10 @@ export const RegisterPage = () => {
 
 
   const [form, setForm] = useState({
-    name: 'Alvaro',
-    lastname: 'Calderon',
-    email: 'alvaro@gmail.com',
-    password: '123456',
+    name: '',
+    lastname: '',
+    email: '',
+    password: '',
   })
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -7,7 +7,7 @@ import { scrollToBottomAnimated } from '../../helpers/scrollToBottom';
 
 export const SocketProvider: FC = ({children}) => {
 
-    const { online, socket, connectSocket, disconnectSocket } = useSocket('http://localhost:8081');
+    const { online, socket, connectSocket, disconnectSocket } = useSocket(import.meta.env.VITE_APP_API_URL_SOCKET);
     const { auth } = useContext(AuthContext)
     const { getUsers, newMessage } = useContext(ChatContext)
 
