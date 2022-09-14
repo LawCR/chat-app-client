@@ -1,0 +1,1 @@
+export {default as user_default} from './imgs/user_default.png';

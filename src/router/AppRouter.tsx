@@ -1,18 +1,50 @@
+import { useContext, useState } from 'react';
 import { BrowserRouter , Routes, Route } from "react-router-dom"
-import { ChatPage } from '../pages/chat/ChatPage';
 import { AuthRouter } from "./AuthRouter";
+import { AuthContext } from "../auth";
+import { useEffect } from 'react';
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from "./PrivateRoute";
+import { DashboardRoutes } from "./DashboardRoutes";
+import { ChatContext } from '../context/chat';
 
 
 
 export const AppRouter = () => {
-  return (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/auth/*" element={<AuthRouter />} />
-            <Route path="/" element={<ChatPage />} />
 
-            <Route path='/*' element={<ChatPage />} />
-        </Routes>
-    </BrowserRouter>
-)
+    const { auth, verifyToken } = useContext(AuthContext)
+    const { dark } = useContext(ChatContext)
+
+    useEffect(() => {
+        verifyToken()
+    }, [verifyToken])
+
+    if (auth.checking) {
+        return <h1>Espere por favor</h1>
+    }
+
+    return (
+        <div className={dark ? 'dark' : ''}>
+            <BrowserRouter>
+                <Routes>
+                    {/* Rutas publicas sin autorización */}
+                    <Route path="/auth/*" element={
+                        <PublicRoute >
+                            <AuthRouter />
+                        </PublicRoute>
+                    } />
+
+                    {/* Rutas privadas con autorización */}
+                    <Route path="/*" element={
+                        <PrivateRoute >
+                            <DashboardRoutes />
+                        </PrivateRoute>
+                    } />
+
+                    
+                    {/* <Route path='/*' element={<ChatPage />} /> */}
+                </Routes>
+            </BrowserRouter>
+        </div>
+    )
 }

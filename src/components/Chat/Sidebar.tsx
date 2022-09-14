@@ -1,16 +1,24 @@
 import { SidebarChatItem } from "./SidebarChatItem"
+import { useContext } from 'react';
+import { ChatContext } from "../../context/chat";
+import { AuthContext } from "../../auth";
 
 
 export const Sidebar = () => {
 
-    const chats = [1,2,3,4,5,6,7,8,9,10];
-
+    const { users } = useContext(ChatContext)
+    const { auth } = useContext(AuthContext)
+    
     return (
         <div className="overflow-y-auto h-screen">
-
             {
-                chats.map(chat => (
-                    <SidebarChatItem key={chat} />
+                users
+                    .filter(user => user.uid !== auth.uid)
+                    .map(user => (
+                    <SidebarChatItem 
+                        key={user.uid} 
+                        user={user}
+                    />
                 ))
             }
 
